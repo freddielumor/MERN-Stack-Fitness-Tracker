@@ -1,24 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Router } from "@reach/router";
+import Header from "./components/Header/Header";
+import Home from "./components/Home/Home";
+import EditExercise from "./components/EditExercise/EditExercise";
+import CreateExercise from "./components/CreateExercise/CreateExercise";
+import CreateUser from "./components/CreateUser/CreateUser";
+import "./utilitites/normalize.scss";
+import "./App.scss";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <Header />
+
+      <main className="app__main">
+        <Router>
+          <Home path="/" />
+          <EditExercise path="/edit/:id" />
+          <CreateExercise path="/create" />
+          <CreateUser path="/user" />
+        </Router>
+      </main>
     </div>
   );
 }
