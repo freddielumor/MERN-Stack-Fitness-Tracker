@@ -7,8 +7,6 @@ import "./CreateUser.scss";
 const CreateUser = () => {
   const [username, setUsername] = useState("");
 
-  console.log("username", username);
-
   const onChangeUsername = (e) => {
     const { value } = e.target;
     setUsername(value);
@@ -21,8 +19,6 @@ const CreateUser = () => {
     const user = {
       username,
     };
-
-    console.log("user", user);
 
     axios.post(CREATE_USER_ENDPOINT, user).then((res) => console.log(res.data));
 

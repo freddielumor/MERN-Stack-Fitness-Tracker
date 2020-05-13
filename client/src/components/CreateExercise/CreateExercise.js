@@ -28,12 +28,6 @@ const CreateExercise = () => {
     });
   }, []);
 
-  console.log("username", state.username);
-  console.log("description", state.description);
-  console.log("duration", state.duration);
-  console.log("date", state.date);
-  console.log("users", state.users);
-
   const onChange = (e) => {
     const { name, value } = e.target;
     setState((prev) => ({
@@ -57,14 +51,12 @@ const CreateExercise = () => {
       users,
     };
 
-    console.log("exercise", exercise);
-
     axios
       .post(CREATE_EXERCISE_ENDPOINT, exercise)
       .then((res) => console.log(res.data));
 
     // Go home after submit
-    // window.location = "/";
+    window.location = "/";
   };
 
   return (

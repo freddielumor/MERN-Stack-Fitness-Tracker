@@ -16,9 +16,6 @@ export default function Header() {
         <Link className="nav__link" to="/create">
           Add Workout
         </Link>
-        <Link className="nav__link" to="/edit/:id">
-          Edit Workout
-        </Link>
         <Link className="nav__link" to="/user">
           Add User
         </Link>
