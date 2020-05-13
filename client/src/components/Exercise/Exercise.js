@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "@reach/router";
 
-const Exercise = ({ exercise, deleteExercise, key }) => {
+const Exercise = ({ exercise, deleteExercise, id }) => {
   return (
-    <tr key={key}>
+    <tr key={id}>
       <td>{exercise.username}</td>
       <td>{exercise.description}</td>
       <td>{exercise.duration}</td>

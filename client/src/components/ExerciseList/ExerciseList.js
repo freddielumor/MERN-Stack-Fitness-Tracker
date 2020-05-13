@@ -38,6 +38,7 @@ const ExerciseList = () => {
           exercise={currentExercise}
           deleteExercise={deleteExercise}
           key={currentExercise._id}
+          id={currentExercise._id}
         />
       );
     });
