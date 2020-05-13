@@ -20,7 +20,7 @@ export default function Header() {
           Edit Workout
         </Link>
         <Link className="nav__link" to="/user">
-          Account
+          Add User
         </Link>
       </nav>
     </header>

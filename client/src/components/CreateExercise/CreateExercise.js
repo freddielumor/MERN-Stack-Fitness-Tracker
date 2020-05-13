@@ -61,7 +61,7 @@ const CreateExercise = () => {
 
       <Form className="create-exercise__form" onSubmit={hanldeSubmit}>
         <Form.Group>
-          <Form.Label>Name</Form.Label>
+          <Form.Label>User</Form.Label>
           <Form.Text className="text-muted">Select user</Form.Text>
           <Form.Control
             as="select"
