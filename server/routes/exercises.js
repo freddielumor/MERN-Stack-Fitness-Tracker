@@ -24,11 +24,8 @@ router.route("/add").post((req, res) => {
 
   newExercise
     .save()
-    .then(() =>
-      res
-        .json("Exercise added!")
-        .catch((err) => res.status(400).json(`Error: ${err}`))
-    );
+    .then(() => res.json("Exercise added!"))
+    .catch((err) => res.status(400).json(`Error: ${err}`));
 });
 
 // Get exercise by ID route

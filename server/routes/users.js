@@ -9,18 +9,15 @@ router.route("/").get((req, res) => {
 });
 
 // Add users route
-router.route("/add").post((req, res) => {
+router.route("/add").post((req, response) => {
   const username = req.body.username;
 
   const newUser = new User({ username });
 
   newUser
     .save()
-    .then(() =>
-      res
-        .json("User added!")
-        .catch((err) => res.status(400).json(`Error: ${err}`))
-    );
+    .then(() => response.json("User added!"))
+    .catch((err) => response.status(400).json(`Error: ${err}`));
 });
 
 module.exports = router;

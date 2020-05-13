@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { Button, Form } from "react-bootstrap";
-import DatePicker from "react-datepicker";
+import {
+  GET_USERS_ENDPOINT,
+  CREATE_EXERCISE_ENDPOINT,
+} from "../../utilitites/constants";
 import "./CreateExercise.scss";
 
 const CreateExercise = () => {
@@ -13,11 +17,15 @@ const CreateExercise = () => {
   });
 
   useEffect(() => {
-    setState((prev) => ({
-      ...prev,
-      username: "fred",
-      users: ["fred"],
-    }));
+    axios.get(GET_USERS_ENDPOINT).then((res) => {
+      if (res.data.length > 0) {
+        setState((prev) => ({
+          ...prev,
+          users: res.data.map((user) => user.username),
+          username: res.data[0].username,
+        }));
+      }
+    });
   }, []);
 
   console.log("username", state.username);
@@ -50,6 +58,10 @@ const CreateExercise = () => {
     };
 
     console.log("exercise", exercise);
+
+    axios
+      .post(CREATE_EXERCISE_ENDPOINT, exercise)
+      .then((res) => console.log(res.data));
 
     // Go home after submit
     // window.location = "/";

@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import { Button, Form } from "react-bootstrap";
+import { CREATE_USER_ENDPOINT } from "../../utilitites/constants";
 import "./CreateUser.scss";
 
 const CreateUser = () => {
@@ -21,6 +23,8 @@ const CreateUser = () => {
     };
 
     console.log("user", user);
+
+    axios.post(CREATE_USER_ENDPOINT, user).then((res) => console.log(res.data));
 
     // Clear input after submit
     setUsername("");
