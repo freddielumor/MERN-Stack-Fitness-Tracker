@@ -6,6 +6,7 @@ import EditExercise from "./components/EditExercise/EditExercise";
 import CreateExercise from "./components/CreateExercise/CreateExercise";
 import CreateUser from "./components/CreateUser/CreateUser";
 import "./utilitites/normalize.scss";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.scss";
 
 function App() {
