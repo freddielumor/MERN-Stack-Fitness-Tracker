@@ -35,6 +35,9 @@ $ yarn server
 
 ## Technical Features
 
+- MongoDB
+- Express
+- Node
 - React (Hooks)
 - Reach Router
 - React Bootstrap
