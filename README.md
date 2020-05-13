@@ -2,7 +2,7 @@
 
 A fitness tracker app
 
-## Install Front End Dependencies & run app
+## Install frontend dependencies & run app
 
 In the "client" folder
 
@@ -14,7 +14,7 @@ $ yarn install
 $ yarn start
 ```
 
-## Install Backend Dependencies & run Express server
+## Install backend dependencies & run express server
 
 In the "server" folder
 
