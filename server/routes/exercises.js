@@ -36,7 +36,7 @@ router.route("/:id").get((req, res) => {
 });
 
 // Update exercise route
-router.route("/update/:id").put((req, res) => {
+router.route("/update/:id").post((req, res) => {
   Exercise.findByIdAndUpdate(req.params.id)
     .then((exercise) => {
       exercise.username = req.body.username;
