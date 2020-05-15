@@ -48,7 +48,7 @@ const ExerciseList = () => {
     <div className="exercise-list">
       <h2>Workout Log</h2>
 
-      <Table className="exercise-list__form" striped>
+      <Table className="exercise-list__form" striped responsive>
         <thead>
           <tr>
             <th>Username</th>
