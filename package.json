@@ -4,12 +4,15 @@
   "description": "MERN Fitness tracker",
   "main": "index.js",
   "scripts": {
-    "dev": "concurrently --kill-others-on-fail \"cd server && yarn server\" \"cd client && yarn start\" "
+    "dev": "concurrently --kill-others-on-fail \"cd server && yarn server\" \"cd client && yarn start\" ",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false cd client && yarn install && yarn build"
   },
   "author": "Freddie Lumor",
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^5.2.0"
   },
-  "dependencies": {}
+  "engines": {
+    "node": "10.16.0"
+  }
 }
