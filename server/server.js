@@ -1,5 +1,4 @@
 const express = require("express");
-const keys = require("./config/keys");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const exerciseRouter = require("./routes/exercises");
@@ -16,7 +15,7 @@ app.use(cors());
 app.use(express.json());
 
 // Connect to Mongoose
-const uri = keys.mongoURI;
+const uri = process.env.mongoURI;
 mongoose.connect(uri, {
   useNewUrlParser: true,
   useCreateIndex: true,
