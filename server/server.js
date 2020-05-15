@@ -4,6 +4,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const exerciseRouter = require("./routes/exercises");
 const userRouter = require("./routes/users");
+const morgan = require("morgan");
 
 require("dotenv").config();
 
@@ -28,6 +29,7 @@ connection.once("open", () => {
 });
 
 // Setup App Routes
+app.use(morgan("tiny")); // logging framework
 app.use("/exercises", exerciseRouter);
 app.use("/users", userRouter);
 
