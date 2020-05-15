@@ -41,7 +41,9 @@ const CreateUser = () => {
             onChange={onChangeUsername}
           />
         </Form.Group>
-
+        <Button href={`/`} variant="secondary">
+          Cancel
+        </Button>{" "}
         <Button variant="primary" type="submit">
           Submit
         </Button>

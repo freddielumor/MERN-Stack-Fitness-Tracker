@@ -1,0 +1,15 @@
+{
+  "name": "mern-stack-fitness-tracker",
+  "version": "1.0.0",
+  "description": "MERN Fitness tracker",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently --kill-others-on-fail \"cd server && yarn server\" \"cd client && yarn start\" "
+  },
+  "author": "Freddie Lumor",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^5.2.0"
+  },
+  "dependencies": {}
+}

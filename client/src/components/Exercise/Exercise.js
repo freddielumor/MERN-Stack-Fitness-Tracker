@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "@reach/router";
+import { Button } from "react-bootstrap";
 
 const Exercise = ({ exercise, deleteExercise, id }) => {
   return (
@@ -9,10 +9,12 @@ const Exercise = ({ exercise, deleteExercise, id }) => {
       <td>{exercise.duration}</td>
       <td>{exercise.date && exercise.date.substring(0, 10)}</td>
       <td>
-        <Link to={`/edit/${exercise._id}`}>edit</Link> |{" "}
-        <a href="#" onClick={() => deleteExercise(exercise._id)}>
+        <Button href={`/edit/${exercise._id}`} variant="secondary">
+          edit
+        </Button>{" "}
+        <Button variant="danger" onClick={() => deleteExercise(exercise._id)}>
           delete
-        </a>
+        </Button>{" "}
       </td>
     </tr>
   );

@@ -83,18 +83,17 @@ const CreateExercise = () => {
             })}
           </Form.Control>
         </Form.Group>
-
         <Form.Group>
           <Form.Label>Description</Form.Label>
+          <Form.Text className="text-muted">Add workout description</Form.Text>
           <Form.Control
             type="text"
-            placeholder="Enter workout description"
+            placeholder="E.g. Sprints"
             name={"description"}
             value={state.description}
             onChange={onChange}
           />
         </Form.Group>
-
         <Form.Group>
           <Form.Label>Duration</Form.Label>
           <Form.Text className="text-muted">
@@ -107,7 +106,6 @@ const CreateExercise = () => {
             onChange={onChange}
           />
         </Form.Group>
-
         <Form.Group>
           <Form.Label>Date</Form.Label>
           <Form.Text className="text-muted">Select workout date</Form.Text>
@@ -118,7 +116,9 @@ const CreateExercise = () => {
             onChange={onChange}
           />
         </Form.Group>
-
+        <Button href={`/`} variant="secondary">
+          Cancel
+        </Button>{" "}
         <Button variant="primary" type="submit">
           Submit
         </Button>

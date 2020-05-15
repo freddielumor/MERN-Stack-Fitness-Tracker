@@ -41,7 +41,7 @@ const EditExercise = (props) => {
         }));
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [props.id]);
 
   const onChange = (e) => {
     const { name, value } = e.target;
@@ -78,26 +78,18 @@ const EditExercise = (props) => {
       <Form className="create-exercise__form" onSubmit={hanldeSubmit}>
         <Form.Group>
           <Form.Label>User</Form.Label>
-          <Form.Text className="text-muted">Select user</Form.Text>
           <Form.Control
-            as="select"
+            type="text"
             placeholder="Enter name"
             name={"username"}
             value={state.username}
             onChange={onChange}
-          >
-            {state.users.map((user) => {
-              return (
-                <option key={user} value={user}>
-                  {user}
-                </option>
-              );
-            })}
-          </Form.Control>
+            disabled
+          ></Form.Control>
         </Form.Group>
-
         <Form.Group>
           <Form.Label>Description</Form.Label>
+          <Form.Text className="text-muted">Edit workout description</Form.Text>
           <Form.Control
             type="text"
             placeholder="Enter workout description"
@@ -106,11 +98,10 @@ const EditExercise = (props) => {
             onChange={onChange}
           />
         </Form.Group>
-
         <Form.Group>
           <Form.Label>Duration</Form.Label>
           <Form.Text className="text-muted">
-            Enter workout duration (mins)
+            Edit workout duration (mins)
           </Form.Text>
           <Form.Control
             type="number"
@@ -119,10 +110,9 @@ const EditExercise = (props) => {
             onChange={onChange}
           />
         </Form.Group>
-
         <Form.Group>
           <Form.Label>Date</Form.Label>
-          <Form.Text className="text-muted">Select workout date</Form.Text>
+          <Form.Text className="text-muted">Edit workout date</Form.Text>
           <Form.Control
             type="date"
             name={"date"}
@@ -130,7 +120,9 @@ const EditExercise = (props) => {
             onChange={onChange}
           />
         </Form.Group>
-
+        <Button href={`/`} variant="secondary">
+          Cancel
+        </Button>{" "}
         <Button variant="primary" type="submit">
           Submit
         </Button>
