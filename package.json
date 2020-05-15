@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "concurrently --kill-others-on-fail \"cd server && yarn server\" \"cd client && yarn start\" ",
-    "heroku-postbuild": "cd client && yarn install && npm yarn build"
+    "heroku-postbuild": "cd client && yarn install && yarn build"
   },
   "author": "Freddie Lumor",
   "license": "ISC",
