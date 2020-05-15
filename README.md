@@ -12,7 +12,7 @@ $ yarn install
 
 ## Install backend dependencies
 
-In the "server" folder
+In the root folder
 
 ```sh
 $ yarn install
