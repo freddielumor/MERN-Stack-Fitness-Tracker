@@ -4,8 +4,9 @@
   "description": "MERN Fitness tracker",
   "main": "index.js",
   "scripts": {
-    "dev": "concurrently --kill-others-on-fail \"cd server && yarn server\" \"cd client && yarn start\" ",
-    "heroku-postbuild": "cd client && yarn install && yarn build"
+    "start": "nodemon server.js",
+    "dev": "concurrently --kill-others-on-fail \"yarn start\" \"cd client && yarn start\" ",
+    "heroku-postbuild": "cd client && yarn install --only=dev && yarn install && yarn build"
   },
   "author": "Freddie Lumor",
   "license": "ISC",
