@@ -5,7 +5,7 @@ import Exercise from "../Exercise/Exercise";
 import {
   GET_EXERCISES_ENDPOINT,
   DELETE_EXERCISE_ENDPOINT,
-} from "../../utilitites/constants";
+} from "../../utilitites/apiConstants";
 import "./ExerciseList.scss";
 
 const ExerciseList = () => {

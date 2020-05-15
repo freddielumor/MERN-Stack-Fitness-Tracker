@@ -4,7 +4,7 @@ import { Button, Form } from "react-bootstrap";
 import {
   GET_EXERCISES_ENDPOINT,
   UPDATE_EXERCISE_ENDPOINT,
-} from "../../utilitites/constants";
+} from "../../utilitites/apiConstants";
 import "./EditExercise.scss";
 
 const EditExercise = (props) => {

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Button, Form } from "react-bootstrap";
-import { CREATE_USER_ENDPOINT } from "../../utilitites/constants";
+import { CREATE_USER_ENDPOINT } from "../../utilitites/apiConstants";
 import "./CreateUser.scss";
 
 const CreateUser = () => {

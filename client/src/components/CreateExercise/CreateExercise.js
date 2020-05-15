@@ -4,7 +4,7 @@ import { Button, Form } from "react-bootstrap";
 import {
   GET_USERS_ENDPOINT,
   CREATE_EXERCISE_ENDPOINT,
-} from "../../utilitites/constants";
+} from "../../utilitites/apiConstants";
 import "./CreateExercise.scss";
 
 const CreateExercise = () => {
