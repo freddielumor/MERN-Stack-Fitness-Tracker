@@ -31,7 +31,7 @@ const WorkoutList = () => {
     setExercises(exercises.filter((exercise) => exercise._id !== id));
   };
 
-  const workoutList = () => {
+  const workoutLog = () => {
     return exercises.map((currentExercise) => {
       return (
         <Workout
@@ -48,7 +48,7 @@ const WorkoutList = () => {
     <div className="workout-list">
       <h2>Workout Log</h2>
 
-      <Table className="workout-list__form" striped responsive>
+      <Table className="workout-list__log" striped responsive>
         <thead>
           <tr>
             <th>Username</th>
@@ -58,7 +58,7 @@ const WorkoutList = () => {
             <th>Actions</th>
           </tr>
         </thead>
-        <tbody>{workoutList()}</tbody>
+        <tbody>{workoutLog()}</tbody>
       </Table>
     </div>
   );
