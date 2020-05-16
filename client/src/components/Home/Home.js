@@ -1,6 +1,6 @@
 import React from "react";
-import ExerciseList from "../ExerciseList/ExerciseList";
+import WorkoutList from "../WorkoutList/WorkoutList";
 
 export default function Home() {
-  return <ExerciseList />;
+  return <WorkoutList />;
 }

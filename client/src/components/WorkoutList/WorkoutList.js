@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Table } from "react-bootstrap";
-import Exercise from "../Exercise/Exercise";
+import Workout from "../Workout/Workout";
 import {
   GET_EXERCISES_ENDPOINT,
   DELETE_EXERCISE_ENDPOINT,
 } from "../../utilitites/apiConstants";
-import "./ExerciseList.scss";
+import "./WorkoutList.scss";
 
-const ExerciseList = () => {
+const WorkoutList = () => {
   const [exercises, setExercises] = useState([]);
 
   useEffect(() => {
@@ -31,10 +31,10 @@ const ExerciseList = () => {
     setExercises(exercises.filter((exercise) => exercise._id !== id));
   };
 
-  const exerciseList = () => {
+  const workoutList = () => {
     return exercises.map((currentExercise) => {
       return (
-        <Exercise
+        <Workout
           exercise={currentExercise}
           deleteExercise={deleteExercise}
           key={currentExercise._id}
@@ -45,10 +45,10 @@ const ExerciseList = () => {
   };
 
   return (
-    <div className="exercise-list">
+    <div className="workout-list">
       <h2>Workout Log</h2>
 
-      <Table className="exercise-list__form" striped responsive>
+      <Table className="workout-list__form" striped responsive>
         <thead>
           <tr>
             <th>Username</th>
@@ -58,10 +58,10 @@ const ExerciseList = () => {
             <th>Actions</th>
           </tr>
         </thead>
-        <tbody>{exerciseList()}</tbody>
+        <tbody>{workoutList()}</tbody>
       </Table>
     </div>
   );
 };
 
-export default ExerciseList;
+export default WorkoutList;

@@ -13,7 +13,7 @@ export default function Header() {
         <Link className="nav__link" to="/">
           Home
         </Link>
-        <Link className="nav__link" to="/create">
+        <Link className="nav__link" to="/add">
           Add Workout
         </Link>
         <Link className="nav__link" to="/user">

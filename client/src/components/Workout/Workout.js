@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 
-const Exercise = ({ exercise, deleteExercise, id }) => {
+const Workout = ({ exercise, deleteExercise, id }) => {
   return (
     <tr key={id}>
       <td>{exercise.username}</td>
@@ -20,4 +20,4 @@ const Exercise = ({ exercise, deleteExercise, id }) => {
   );
 };
 
-export default Exercise;
+export default Workout;

@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Button, Form } from "react-bootstrap";
 import { CREATE_USER_ENDPOINT } from "../../utilitites/apiConstants";
-import "./CreateUser.scss";
+import "./AddUser.scss";
 
-const CreateUser = () => {
+const AddUser = () => {
   const [username, setUsername] = useState("");
 
   const onChangeUsername = (e) => {
@@ -27,10 +27,10 @@ const CreateUser = () => {
   };
 
   return (
-    <div className="create-user">
+    <div className="add-user">
       <h2>Add New User</h2>
 
-      <Form className="create-user__form" onSubmit={hanldeSubmit}>
+      <Form className="add-user__form" onSubmit={hanldeSubmit}>
         <Form.Group>
           <Form.Label>User</Form.Label>
           <Form.Control
@@ -52,4 +52,4 @@ const CreateUser = () => {
   );
 };
 
-export default CreateUser;
+export default AddUser;

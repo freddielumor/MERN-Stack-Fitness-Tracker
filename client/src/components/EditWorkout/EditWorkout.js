@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Button, Form } from "react-bootstrap";
 import {
-  GET_USERS_ENDPOINT,
-  CREATE_EXERCISE_ENDPOINT,
+  GET_EXERCISES_ENDPOINT,
+  UPDATE_EXERCISE_ENDPOINT,
 } from "../../utilitites/apiConstants";
-import "./CreateExercise.scss";
+import "./EditWorkout.scss";
 
-const CreateExercise = () => {
+const EditWorkout = (props) => {
   const [state, setState] = useState({
     username: "",
     description: "",
@@ -16,8 +16,9 @@ const CreateExercise = () => {
     users: [],
   });
 
+  // Get all workouts
   useEffect(() => {
-    axios.get(GET_USERS_ENDPOINT).then((res) => {
+    axios.get(GET_EXERCISES_ENDPOINT).then((res) => {
       if (res.data.length > 0) {
         setState((prev) => ({
           ...prev,
@@ -26,7 +27,21 @@ const CreateExercise = () => {
         }));
       }
     });
-  }, []);
+
+    // Get single workout
+    axios
+      .get(`${GET_EXERCISES_ENDPOINT}/${props.id}`)
+      .then((res) => {
+        setState((prev) => ({
+          ...prev,
+          username: res.data.username,
+          description: res.data.description,
+          duration: res.data.duration,
+          date: new Date(res.data.date),
+        }));
+      })
+      .catch((err) => console.log(err));
+  }, [props.id]);
 
   const onChange = (e) => {
     const { name, value } = e.target;
@@ -52,43 +67,32 @@ const CreateExercise = () => {
     };
 
     axios
-      .post(CREATE_EXERCISE_ENDPOINT, exercise)
+      .post(`${UPDATE_EXERCISE_ENDPOINT}/${props.id}`, exercise)
       .then((res) => console.log(res.data));
-
-    // Go home after submit
-    window.location = "/";
   };
 
   return (
-    <div className="create-exercise">
-      <h2>Add New Workout</h2>
+    <div className="edit-workout">
+      <h2>Edit Workout</h2>
 
-      <Form className="create-exercise__form" onSubmit={hanldeSubmit}>
+      <Form className="create-workout__form" onSubmit={hanldeSubmit}>
         <Form.Group>
           <Form.Label>User</Form.Label>
-          <Form.Text className="text-muted">Select user</Form.Text>
           <Form.Control
-            as="select"
+            type="text"
             placeholder="Enter name"
             name={"username"}
             value={state.username}
             onChange={onChange}
-          >
-            {state.users.map((user) => {
-              return (
-                <option key={user} value={user}>
-                  {user}
-                </option>
-              );
-            })}
-          </Form.Control>
+            disabled
+          ></Form.Control>
         </Form.Group>
         <Form.Group>
           <Form.Label>Description</Form.Label>
-          <Form.Text className="text-muted">Add workout description</Form.Text>
+          <Form.Text className="text-muted">Edit workout description</Form.Text>
           <Form.Control
             type="text"
-            placeholder="E.g. Sprints"
+            placeholder="Enter workout description"
             name={"description"}
             value={state.description}
             onChange={onChange}
@@ -97,7 +101,7 @@ const CreateExercise = () => {
         <Form.Group>
           <Form.Label>Duration</Form.Label>
           <Form.Text className="text-muted">
-            Enter workout duration (mins)
+            Edit workout duration (mins)
           </Form.Text>
           <Form.Control
             type="number"
@@ -108,7 +112,7 @@ const CreateExercise = () => {
         </Form.Group>
         <Form.Group>
           <Form.Label>Date</Form.Label>
-          <Form.Text className="text-muted">Select workout date</Form.Text>
+          <Form.Text className="text-muted">Edit workout date</Form.Text>
           <Form.Control
             type="date"
             name={"date"}
@@ -127,4 +131,4 @@ const CreateExercise = () => {
   );
 };
 
-export default CreateExercise;
+export default EditWorkout;
