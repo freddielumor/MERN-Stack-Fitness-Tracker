@@ -4,7 +4,7 @@ import "./Header.scss";
 
 export default function Header() {
   return (
-    <header className="header">
+    <header className="app__header">
       <Link className="" to="/">
         <h1 className="title">MERN Fitness Tracker</h1>
       </Link>

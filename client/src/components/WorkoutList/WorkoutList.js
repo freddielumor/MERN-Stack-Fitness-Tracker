@@ -9,13 +9,13 @@ import {
 import "./WorkoutList.scss";
 
 const WorkoutList = () => {
-  const [exercises, setExercises] = useState([]);
+  const [workouts, setWorkouts] = useState([]);
 
   useEffect(() => {
     axios
       .get(GET_EXERCISES_ENDPOINT)
       .then((res) => {
-        setExercises(res.data);
+        setWorkouts(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -23,20 +23,20 @@ const WorkoutList = () => {
   }, []);
 
   // Delete selected exercise
-  const deleteExercise = (id) => {
+  const deleteWorkout = (id) => {
     axios
       .delete(`${DELETE_EXERCISE_ENDPOINT}/${id}`)
       .then((res) => console.log(res.data));
 
-    setExercises(exercises.filter((exercise) => exercise._id !== id));
+    setWorkouts(workouts.filter((workout) => workout._id !== id));
   };
 
   const workoutLog = () => {
-    return exercises.map((currentExercise) => {
+    return workouts.map((currentExercise) => {
       return (
         <Workout
           exercise={currentExercise}
-          deleteExercise={deleteExercise}
+          deleteWorkout={deleteWorkout}
           key={currentExercise._id}
           id={currentExercise._id}
         />

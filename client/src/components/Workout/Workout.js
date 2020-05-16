@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 
-const Workout = ({ exercise, deleteExercise, id }) => {
+const Workout = ({ exercise, deleteWorkout, id }) => {
   return (
     <tr key={id}>
       <td>{exercise.username}</td>
@@ -12,7 +12,7 @@ const Workout = ({ exercise, deleteExercise, id }) => {
         <Button href={`/edit/${exercise._id}`} variant="secondary">
           edit
         </Button>{" "}
-        <Button variant="danger" onClick={() => deleteExercise(exercise._id)}>
+        <Button variant="danger" onClick={() => deleteWorkout(exercise._id)}>
           delete
         </Button>{" "}
       </td>

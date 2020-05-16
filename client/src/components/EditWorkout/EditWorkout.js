@@ -9,6 +9,8 @@ import "./EditWorkout.scss";
 
 const EditWorkout = (props) => {
   const [state, setState] = useState({
+    workoutLoaded: false,
+    workoutUpdated: null,
     username: "",
     description: "",
     duration: 0,
@@ -16,24 +18,14 @@ const EditWorkout = (props) => {
     users: [],
   });
 
-  // Get all workouts
+  // Get selected workout
   useEffect(() => {
-    axios.get(GET_EXERCISES_ENDPOINT).then((res) => {
-      if (res.data.length > 0) {
-        setState((prev) => ({
-          ...prev,
-          users: res.data.map((user) => user.username),
-          username: res.data[0].username,
-        }));
-      }
-    });
-
-    // Get single workout
     axios
       .get(`${GET_EXERCISES_ENDPOINT}/${props.id}`)
       .then((res) => {
         setState((prev) => ({
           ...prev,
+          workoutLoaded: true,
           username: res.data.username,
           description: res.data.description,
           duration: res.data.duration,
@@ -68,14 +60,32 @@ const EditWorkout = (props) => {
 
     axios
       .post(`${UPDATE_EXERCISE_ENDPOINT}/${props.id}`, exercise)
-      .then((res) => console.log(res.data));
+      .then((res) => {
+        // Handle errors
+        if (res.status !== 200) {
+          setState((prev) => ({
+            ...prev,
+            workoutUpdated: false,
+            workoutUpdateErr: res.data,
+          }));
+        }
+
+        // Handle success
+        setState((prev) => ({
+          ...prev,
+          workoutUpdated: true,
+          workoutUpdatedSuccess: res.data,
+        }));
+      });
   };
+
+  console.log("state", state);
 
   return (
     <div className="edit-workout">
       <h2>Edit Workout</h2>
 
-      <Form className="create-workout__form" onSubmit={hanldeSubmit}>
+      <Form className="edit-workout__form" onSubmit={hanldeSubmit}>
         <Form.Group>
           <Form.Label>User</Form.Label>
           <Form.Control
@@ -126,6 +136,16 @@ const EditWorkout = (props) => {
         <Button variant="primary" type="submit">
           Submit
         </Button>
+        {state.workoutUpdatedSuccess && (
+          <h4 className="edit-workout__response--success">
+            {state.workoutUpdatedSuccess}
+          </h4>
+        )}
+        {state.workoutUpdateErr && (
+          <h4 className="edit-workout__response--error">
+            {state.workoutUpdateErr}
+          </h4>
+        )}
       </Form>
     </div>
   );
