@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import ActionResponse from "../ActionResponse/ActionResponse";
 import { Button, Form } from "react-bootstrap";
 import {
   GET_USERS_ENDPOINT,
@@ -9,6 +10,10 @@ import "./AddWorkout.scss";
 
 const AddWorkout = () => {
   const [state, setState] = useState({
+    userLoaded: null,
+    workoutAdded: null,
+    workoutAddedSuccess: null,
+    workoutAddedErr: null,
     username: "",
     description: "",
     duration: 0,
@@ -21,6 +26,7 @@ const AddWorkout = () => {
       if (res.data.length > 0) {
         setState((prev) => ({
           ...prev,
+          userLoaded: true,
           users: res.data.map((user) => user.username),
           username: res.data[0].username,
         }));
@@ -53,10 +59,24 @@ const AddWorkout = () => {
 
     axios
       .post(CREATE_EXERCISE_ENDPOINT, exercise)
-      .then((res) => console.log(res.data));
 
-    // Go home after submit
-    window.location = "/";
+      .then((res) => {
+        // Handle success
+        setState((prev) => ({
+          ...prev,
+          workoutAdded: true,
+          workoutAddedSuccess: res.data,
+        }));
+      })
+
+      // Handle errors
+      .catch((err) => {
+        setState((prev) => ({
+          ...prev,
+          workoutAdded: false,
+          workoutAddedErr: err.response.data,
+        }));
+      });
   };
 
   return (
@@ -123,6 +143,28 @@ const AddWorkout = () => {
           Submit
         </Button>
       </Form>
+
+      {state.workoutAddedSuccess && (
+        <div className="edit-workout__response">
+          <ActionResponse
+            alertType="success"
+            headingText="Success!"
+            bodyText="Workout updated"
+            buttonText="Close"
+          />
+        </div>
+      )}
+
+      {state.workoutAddedErr && (
+        <div className="edit-workout__response">
+          <ActionResponse
+            alertType="danger"
+            headingText="Success!"
+            bodyText={state.workoutAddedErr}
+            buttonText="Close"
+          />
+        </div>
+      )}
     </div>
   );
 };

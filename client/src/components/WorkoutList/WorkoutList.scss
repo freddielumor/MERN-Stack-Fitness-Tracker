@@ -3,7 +3,26 @@
     text-align: center;
   }
 
+  &__spinner {
+    margin: auto;
+    display: block !important;
+    margin-top: 2rem;
+  }
+
+  &__no-workouts {
+    text-align: center;
+    margin-top: 2rem;
+
+    p {
+      font-weight: 700;
+    }
+  }
+
   &__log {
+    margin-top: 2rem;
+  }
+
+  &__response {
     margin-top: 2rem;
   }
 }

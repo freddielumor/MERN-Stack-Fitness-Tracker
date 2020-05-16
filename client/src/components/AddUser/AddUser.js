@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
+import ActionResponse from "../ActionResponse/ActionResponse";
 import { Button, Form } from "react-bootstrap";
 import { CREATE_USER_ENDPOINT } from "../../utilitites/apiConstants";
 import "./AddUser.scss";
 
 const AddUser = () => {
   const [username, setUsername] = useState("");
+  const [usernameAddedSuccess, setUsernameAddedSuccess] = useState(null);
+  const [usernameAddedErr, setUsernameAddedErr] = useState(null);
 
   const onChangeUsername = (e) => {
     const { value } = e.target;
@@ -20,10 +23,18 @@ const AddUser = () => {
       username,
     };
 
-    axios.post(CREATE_USER_ENDPOINT, user).then((res) => console.log(res.data));
+    axios
+      .post(CREATE_USER_ENDPOINT, user)
+      .then((res) => {
+        // Handle success
+        setUsernameAddedSuccess(res.data);
+        setUsername("");
+      })
 
-    // Clear input after submit
-    setUsername("");
+      // Handle errors
+      .catch((err) => {
+        setUsernameAddedErr(err.response.data);
+      });
   };
 
   return (
@@ -48,6 +59,28 @@ const AddUser = () => {
           Submit
         </Button>
       </Form>
+
+      {usernameAddedSuccess && (
+        <div className="add-user__response">
+          <ActionResponse
+            alertType="success"
+            headingText="Success!"
+            bodyText={`User added`}
+            buttonText="Close"
+          />
+        </div>
+      )}
+
+      {usernameAddedErr && (
+        <div className="add-user__response">
+          <ActionResponse
+            alertType="danger"
+            headingText="Error!"
+            bodyText={usernameAddedErr}
+            buttonText="Close"
+          />
+        </div>
+      )}
     </div>
   );
 };

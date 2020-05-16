@@ -8,15 +8,6 @@
   }
 
   &__response {
-    &--success {
-      margin-top: 2rem;
-      text-align: center;
-      color: green;
-    }
-    &--error {
-      margin-top: 2rem;
-      text-align: center;
-      color: red;
-    }
+    margin-top: 2rem;
   }
 }

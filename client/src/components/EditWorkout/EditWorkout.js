@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import ActionResponse from "../ActionResponse/ActionResponse";
 import { Button, Form } from "react-bootstrap";
 import {
   GET_EXERCISES_ENDPOINT,
@@ -61,25 +62,23 @@ const EditWorkout = (props) => {
     axios
       .post(`${UPDATE_EXERCISE_ENDPOINT}/${props.id}`, exercise)
       .then((res) => {
-        // Handle errors
-        if (res.status !== 200) {
-          setState((prev) => ({
-            ...prev,
-            workoutUpdated: false,
-            workoutUpdateErr: res.data,
-          }));
-        }
-
         // Handle success
         setState((prev) => ({
           ...prev,
           workoutUpdated: true,
           workoutUpdatedSuccess: res.data,
         }));
+      })
+
+      // Handle errors
+      .catch((err) => {
+        setState((prev) => ({
+          ...prev,
+          workoutUpdated: false,
+          workoutUpdateErr: err.response.data,
+        }));
       });
   };
-
-  console.log("state", state);
 
   return (
     <div className="edit-workout">
@@ -136,17 +135,29 @@ const EditWorkout = (props) => {
         <Button variant="primary" type="submit">
           Submit
         </Button>
-        {state.workoutUpdatedSuccess && (
-          <h4 className="edit-workout__response--success">
-            {state.workoutUpdatedSuccess}
-          </h4>
-        )}
-        {state.workoutUpdateErr && (
-          <h4 className="edit-workout__response--error">
-            {state.workoutUpdateErr}
-          </h4>
-        )}
       </Form>
+
+      {state.workoutUpdatedSuccess && (
+        <div className="edit-workout__response">
+          <ActionResponse
+            alertType="success"
+            headingText="Success!"
+            bodyText="Workout updated"
+            buttonText="Close"
+          />
+        </div>
+      )}
+
+      {state.workoutUpdateErr && (
+        <div className="edit-workout__response">
+          <ActionResponse
+            alertType="danger"
+            headingText="Success!"
+            bodyText={state.workoutUpdateErr}
+            buttonText="Close"
+          />
+        </div>
+      )}
     </div>
   );
 };
